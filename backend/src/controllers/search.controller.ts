@@ -28,9 +28,9 @@ export class SearchController {
   ): Promise<SearchResult> {
     try {
       this.logger.log(`Received search request: ${searchRequest.query}`);
-      
+
       const result = await this.searchService.searchApartments(searchRequest);
-      
+
       return result;
     } catch (error) {
       this.logger.error(`Error in apartment search: ${error.message}`);
@@ -46,8 +46,9 @@ export class SearchController {
     @Param('searchId') searchId: string,
   ): Promise<{ recommendations: Apartment[] }> {
     try {
-      const recommendations = await this.searchService.getRecommendations(searchId);
-      
+      const recommendations =
+        await this.searchService.getRecommendations(searchId);
+
       return { recommendations };
     } catch (error) {
       this.logger.error(`Error getting recommendations: ${error.message}`);
@@ -64,7 +65,7 @@ export class SearchController {
   ): Promise<{ history: SearchHistory[] }> {
     try {
       const history = await this.searchService.getSearchHistory(userId);
-      
+
       return { history };
     } catch (error) {
       this.logger.error(`Error getting search history: ${error.message}`);
@@ -76,10 +77,12 @@ export class SearchController {
   }
 
   @Get('popular')
-  async getPopularSearches(): Promise<{ popular_searches: { query: string; count: number }[] }> {
+  async getPopularSearches(): Promise<{
+    popular_searches: { query: string; count: number }[];
+  }> {
     try {
       const popularSearches = await this.searchService.getPopularSearches();
-      
+
       return { popular_searches: popularSearches };
     } catch (error) {
       this.logger.error(`Error getting popular searches: ${error.message}`);
@@ -98,7 +101,7 @@ export class SearchController {
       // This endpoint is for testing parameter extraction without performing a full search
       const searchRequest: SearchRequestDto = { query: body.query };
       const result = await this.searchService.searchApartments(searchRequest);
-      
+
       return { extracted_parameters: result.parameters };
     } catch (error) {
       this.logger.error(`Error in parameter extraction test: ${error.message}`);
@@ -109,4 +112,3 @@ export class SearchController {
     }
   }
 }
-

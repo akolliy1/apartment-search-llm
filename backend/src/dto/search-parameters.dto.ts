@@ -1,4 +1,11 @@
-import { IsOptional, IsNumber, IsString, IsArray, Min, Max } from 'class-validator';
+import {
+  IsOptional,
+  IsNumber,
+  IsString,
+  IsArray,
+  Min,
+  Max,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class SearchParametersDto {
@@ -49,8 +56,7 @@ export class SearchParametersDto {
       room_type: 'any',
       location: 'any',
       max_distance: 50,
-      amenities: []
+      amenities: [],
     };
   }
 }
-

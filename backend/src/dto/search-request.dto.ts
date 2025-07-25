@@ -9,4 +9,3 @@ export class SearchRequestDto {
   @IsString()
   user_id?: string;
 }
-
